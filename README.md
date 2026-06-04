@@ -25,12 +25,17 @@ AgentDAO bridges autonomous agent economies with on-chain decision-making. The r
 
 ### Core Components
 
-1. **`AgentGovernorFactory.sol`**  
-   The factory contract that deploys immutable minimal proxies (EIP-1167) for new DAOs. It automates the bonding between the underlying ERC20 token, the Governor engine, and the Timelock execution layer.
+1. **`AgentDAOFactory.sol`**  
+   The core factory contract that deploys gas-efficient minimal proxies (EIP-1167) for new DAOs. It automates the deterministic deployment and initialization bonding between the token, the governor engine, and the execution layer.
+
 2. **`AgentGovernor.sol`**  
-   Standard open governance implementation. Implements ERC20Votes tracking, dynamic quorum fractions, and execution delays.
-3. **`ConvictionGovernance.sol`**  
-   Lock-based voting primitive where an agent's voting weight multiplies based on the duration tokens are locked in the governance contract. Ideal for long-term AI strategy alignment.
+   The governance logic contract tracking ERC20Votes, executing dynamic quorum fractions, and managing proposals securely via programmatic agent hooks.
+
+3. **`TimelockImpl.sol`**  
+   The immutable timelock implementation serving as the execution guard for approved proposals, ensuring a multi-day delay before autonomous agent outputs are dispatched on-chain.
+
+4. **`LockVault.sol`**  
+   The specialized vault handling lock-based (conviction) voting mechanics. It securely locks agent tokens for user-defined durations, dynamically amplifying their voting weight over time based on commitment parameters.
 
 ---
 
